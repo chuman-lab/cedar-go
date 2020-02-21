@@ -238,10 +238,7 @@ func (da *Cedar) MatchAll(text []byte, num int) []int {
 	length := len(text)
 
 	for index := 0; index < length; {
-		from := 0
-		size := 0
-
-		for size, pos := 0, index; pos < length; pos++ {
+		for from, size, pos := 0, 0, index; pos < length; pos++ {
 			to, err := da.Jump(text[pos:pos+1], from)
 			if err != nil {
 				index++
