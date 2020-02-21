@@ -268,3 +268,29 @@ func (da *Cedar) MatchAll(text []byte, num int) []int {
 exitFlag:
 	return matchs
 }
+
+// Search source text whether exists keyword or not
+// If exists return true and not exists return false
+func (da *Cedar) Exists(text []byte) bool {
+	size := len(text)
+
+	for index := 0; index < size; index++ {
+		from := 0
+		last := index
+
+		for ; last < size; last++ {
+			to, err := da.Jump(text[last:last+1], from)
+			if err != nil {
+				break
+			}
+
+			if _, err := da.Value(to); err == nil {
+				return true
+			}
+
+			from = to
+		}
+	}
+
+	return false
+}
