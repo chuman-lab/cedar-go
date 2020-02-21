@@ -233,7 +233,9 @@ func (da *Cedar) next(from int, root int) (to int, err error) {
 // Match all keyword from source text
 // Return all keyword values list
 func (da *Cedar) MatchAll(text []byte, num int) []int {
-	var matchs []int
+	var (
+		matchs []int
+	)
 
 	length := len(text)
 
