@@ -232,42 +232,37 @@ func (da *Cedar) next(from int, root int) (to int, err error) {
 
 // Match all keyword from source text
 // Return all keyword values list
-func (da *Cedar) MatchAll(text []byte) []int {
+func (da *Cedar) MatchAll(text []byte, num int) []int {
 	var matchs []int
 
-	for from, i := 0, 0; i < len(text); i++ {
-		to, err := da.Jump(text[i:i+1], from)
-		if err != nil {
-			from = 0
-			continue
-		}
+	length := len(text)
 
-		if value, err := da.Value(to); err == nil {
-			matchs = append(matchs, value)
-		}
+	for index := 0; index < length; {
+		from := 0
+		size := 0
 
-		from = to
+		for size, pos := 0, index; pos < length; pos++ {
+			to, err := da.Jump(text[pos:pos+1], from)
+			if err != nil {
+				index++
+				break
+			}
+
+			from = to
+			size += 1
+
+			if value, err := da.Value(to); err == nil {
+				matchs = append(matchs, value)
+				if num -= 1; num == 0 {
+					goto exitFlag
+				}
+
+				index += size
+				size = 0
+			}
+		}
 	}
 
+exitFlag:
 	return matchs
-}
-
-// Match first keyword from source text
-// Return value of the first keyword
-func (da *Cedar) MatchFirst(text []byte) (int, error) {
-	for from, i := 0, 0; i < len(text); i++ {
-		to, err := da.Jump(text[i:i+1], from)
-		if err != nil {
-			from = 0
-			continue
-		}
-
-		if value, err := da.Value(to); err == nil {
-			return value, nil
-		}
-
-		from = to
-	}
-
-	return 0, ErrNoPath
 }
