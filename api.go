@@ -230,8 +230,8 @@ func (da *Cedar) next(from int, root int) (to int, err error) {
 	return da.begin(from)
 }
 
-func (da *Cedar) MatchAll(text []byte) []int {
-	var matchs []int
+func (da *Cedar) MatchAll(text []byte) [][]byte {
+	var matchs [][]byte
 
 	for from, i := 0, 0; i < len(text); i++ {
 		to, err := da.Jump(text[i:i+1], from)
@@ -240,7 +240,9 @@ func (da *Cedar) MatchAll(text []byte) []int {
 		}
 
 		if value, err := da.Value(to); err == nil {
-			matchs = append(matchs, value)
+			if key, err := da.Key(value); err == nil {
+				matchs = append(matchs, key)
+			}
 		}
 
 		from = to
@@ -249,7 +251,7 @@ func (da *Cedar) MatchAll(text []byte) []int {
 	return matchs
 }
 
-func (da *Cedar) MatchFirst(text []byte) (int, error) {
+func (da *Cedar) MatchFirst(text []byte) ([]byte, error) {
 	for from, i := 0, 0; i < len(text); i++ {
 		to, err := da.Jump(text[i:i+1], from)
 		if err != nil {
@@ -257,7 +259,7 @@ func (da *Cedar) MatchFirst(text []byte) (int, error) {
 		}
 
 		if value, err := da.Value(to); err == nil {
-			return value, nil
+			return da.Key(value)
 		}
 
 		from = to
