@@ -272,13 +272,13 @@ exitFlag:
 // Search source text whether exists keyword or not
 // If exists return true and not exists return false
 func (da *Cedar) Exists(text []byte) bool {
-	size := len(text)
+	length := len(text)
 
-	for index := 0; index < size; index++ {
+	for index := 0; index < length; index++ {
 		from := 0
 		last := index
 
-		for ; last < size; last++ {
+		for ; last < length; last++ {
 			to, err := da.Jump(text[last:last+1], from)
 			if err != nil {
 				break

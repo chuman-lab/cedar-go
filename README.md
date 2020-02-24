@@ -1,8 +1,11 @@
 Fork from [cedar-go](https://github.com/adamzy/cedar-go) and modified some codes
 
 ### Add APIs
-1. `MatchAll(text []byte, num int) []int`: Match `num` amonut keywords from `text`, if `num` is 0 then match all.
-2. `Exists(text []byte) bool`: Search `text` whether exists keywords or not.
+1. `MatchAll(text []byte, num int) []int`:
+	Match `num` amonut keywords from `text`, if `num` is 0 then match all.
+
+2. `Exists(text []byte) bool`:
+	Search `text` whether exists keywords or not.
 
 # cedar-go [![GoDoc](https://godoc.org/github.com/adamzy/cedar-go?status.svg)](https://godoc.org/github.com/adamzy/cedar-go)
 
