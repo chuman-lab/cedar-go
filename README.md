@@ -1,9 +1,11 @@
+Fork from https://github.com/adamzy/cedar-go
+
 # cedar-go [![GoDoc](https://godoc.org/github.com/adamzy/cedar-go?status.svg)](https://godoc.org/github.com/adamzy/cedar-go)
 
 Package `cedar-go` implementes double-array trie.
 
-It is a [Golang](https://golang.org/) port of [cedar](http://www.tkl.iis.u-tokyo.ac.jp/~ynaga/cedar) which is written in C++ by Naoki Yoshinaga. `cedar-go` currently implements the `reduced` verion of cedar. 
-This package is not thread safe if there is one goroutine doing insertions or deletions. 
+It is a [Golang](https://golang.org/) port of [cedar](http://www.tkl.iis.u-tokyo.ac.jp/~ynaga/cedar) which is written in C++ by Naoki Yoshinaga. `cedar-go` currently implements the `reduced` verion of cedar.
+This package is not thread safe if there is one goroutine doing insertions or deletions.
 
 ## Install
 ```
