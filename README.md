@@ -1,5 +1,9 @@
 Fork from [cedar-go](https://github.com/adamzy/cedar-go) and modified some codes
 
+### Add APIs
+1. `MatchAll(text []byte, num int) []int`: Match `num` amonut keywords from `text`, if `num` is 0 then match all.
+2. `Exists(text []byte) bool`: Search `text` whether exists keywords or not.
+
 # cedar-go [![GoDoc](https://godoc.org/github.com/adamzy/cedar-go?status.svg)](https://godoc.org/github.com/adamzy/cedar-go)
 
 Package `cedar-go` implementes double-array trie.
@@ -9,7 +13,7 @@ This package is not thread safe if there is one goroutine doing insertions or de
 
 ## Install
 ```
-go get github.com/adamzy/cedar-go
+go get github.com/liexusong/cedar-go
 ```
 
 ## Usage
@@ -19,7 +23,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/adamzy/cedar-go"
+	"github.com/liexusong/cedar-go"
 )
 
 func main() {
