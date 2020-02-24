@@ -1,4 +1,4 @@
-Fork from https://github.com/adamzy/cedar-go
+Fork from [cedar-go](https://github.com/adamzy/cedar-go) and modified some codes
 
 # cedar-go [![GoDoc](https://godoc.org/github.com/adamzy/cedar-go?status.svg)](https://godoc.org/github.com/adamzy/cedar-go)
 
